@@ -6,16 +6,23 @@
   <p><%= "Address: #{@restaurant.address}" %></p>
   <p><%= "Phone number: #{@restaurant.phone_number}" %></p>
 
-  <%= link_to "Add a review to #{@restaurant.name}", new_restaurant_review_path(@restaurant) %>
+  <h2>Add a new review :</h2>
 
-  <ul>
-    <% @restaurant.reviews.each do |review| %>
-      <li>
-        <%= review.rating %><br>
-        <%= review.content %>
-      </li>
-    <% end %>
-  </ul>
+  <div class="container">
+    <%= render '/reviews/form', review: @review %>
+  </div>
+
+  <h2>Reviews:</h2>
+  <div class="container">
+    <ul class="list-group">
+      <% @restaurant.reviews.each do |review| %>
+        <li class="list-group-item">
+          <%= review.rating %>/5<br>
+          <%= review.content %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
 
 <%= link_to "Back to \"#{@restaurant.name}\" page", restaurants_path %>
